@@ -9,8 +9,8 @@ class RealTimeChart extends PureComponent {
         super(props)
 
         this.state = {
-            baseLineData: [],
-            stashawayReturns: [],
+            baseLineData: undefined,
+            stashawayReturns: undefined,
             currency: "SGD",
             currencyFormat: {
                 "USD": {
