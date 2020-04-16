@@ -16,7 +16,7 @@
     display: flex;
 }
 
-.flx-display.just-end{
+.flx-display.just-end {
     justify-content: flex-end;
 }
 
@@ -34,20 +34,19 @@
     color: rgb(56, 132, 217);
 }
 
-.width-50 {
+.pd10 {
     padding: 10px 2px 10px 10%;
     box-sizing: border-box;
-    width: 90%;
 }
 
-@media screen and (max-width:425px){
-    .cardContainer{
+@media screen and (max-width:425px) {
+    .cardContainer {
         width: 100%;
     }
-    .flx-display{
+    .flx-display {
         display: block !important;
     }
-    .width-50 {
-        padding: 10px 2px 10px 10px !important;
+    .pd10 {
+        padding: 10px 2px 10px 2px !important;
     }
 }

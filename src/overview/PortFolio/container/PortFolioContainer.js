@@ -57,9 +57,9 @@ const SelectField = (props) => {
         setSelected(selectedValue);
     }
     return (
-        <div className="width-50">
+        <div className="pd10">
             <FormControl variant="outlined">
-                <Select
+                <Select autoWidth={true}
                     labelId="outlined-age-native-simple-label"
                     id="outlined-age-native-simple"
                     onChange={onChange}
