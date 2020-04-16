@@ -28,11 +28,13 @@ class RealTimeChart extends PureComponent {
 
     componentWillReceiveProps(nextProps, state) {
         let request = { ...nextProps.performanceData }
-        let successCallBack = (response) => {
-            let { baseLineData, stashawayReturns, marker } = response
-            this.setState({ ...nextProps.performanceData, baseLineData, stashawayReturns, marker })
+        if (request.selectedValue) {
+            let successCallBack = (response) => {
+                let { baseLineData, stashawayReturns, marker } = response
+                this.setState({ ...nextProps.performanceData, baseLineData, stashawayReturns, marker })
+            }
+            this.fetchPerformanceList(request, successCallBack);
         }
-        this.fetchPerformanceList(request, successCallBack);
     }
 
     async fetchPerformanceList(request, successCallBack) {
@@ -57,14 +59,9 @@ class RealTimeChart extends PureComponent {
             commonProperties["markers"] =
                 [
                     {
-                        axis: 'y',
-                        value: this.state.marker.y,
-                        lineStyle: { strokeWidth: 1, stroke: '#fff' },
-                    },
-                    {
                         axis: 'x',
-                        value: this.state.marker.x,
-                        lineStyle: { strokeWidth: 1, stroke: '#fff' },
+                        value: new Date(this.state.marker.x),
+                        lineStyle: { strokeWidth: 1, stroke: 'rgb(63, 182, 178)' },
                     },
                 ]
         }

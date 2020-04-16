@@ -58,8 +58,8 @@ const SelectField = (props) => {
     }
     return (
         <div className="pd10">
-            <FormControl variant="outlined">
-                <Select autoWidth={true}
+            <FormControl className="width-80" variant="outlined">
+                <Select
                     labelId="outlined-age-native-simple-label"
                     id="outlined-age-native-simple"
                     onChange={onChange}
