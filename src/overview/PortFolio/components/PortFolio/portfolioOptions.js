@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-
-import { performanceDataAction } from '../../../../redux/actions/performanceDataActions';
-import './css/portfolioOptions.css'
 import { connect } from 'react-redux';
+
+import { performanceDataAction } from 'redux/actions/performanceDataActions';
+import './css/portfolioOptions.css'
 
 const Button = (props) => {
     let selected = props.selected ? "selected" : ""
@@ -41,9 +41,9 @@ const keysForPeriod = [
 
 const PeriodSelector = (props) => {
     const [selectedButton, setSelected] = useState("6");
-    props.performanceDataAction({ selectedButton })
     const selectChange = (value) => {
         setSelected(value);
+        props.performanceDataAction({ selectedButton })
     }
     return (
         <div className="cardContainer">
@@ -72,10 +72,10 @@ const currencyOptions = [
 
 const CurrenySelector = (props) => {
     const [selectedButton, setSelected] = useState("1");
-    let currency = (selectedButton === "1") ? "SGD" : "USD"
-    props.performanceDataAction({ currency })
     const selectChange = (value) => {
         setSelected(value);
+        let currency = (selectedButton === "1") ? "SGD" : "USD"
+        props.performanceDataAction({ currency })
     }
     return (
         <div className="cardContainer flx-display just-end">

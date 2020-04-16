@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { ResponsiveLine } from '@nivo/line'
 
-import apiCaller from '../../../../apiCaller'
+import apiCaller from 'apiCaller'
 import { connect } from 'react-redux'
 
 class RealTimeChart extends PureComponent {
@@ -11,6 +11,7 @@ class RealTimeChart extends PureComponent {
         this.state = {
             baseLineData: undefined,
             stashawayReturns: undefined,
+            marker: undefined,
             currency: "SGD",
             currencyFormat: {
                 "USD": {
@@ -25,25 +26,16 @@ class RealTimeChart extends PureComponent {
         }
     }
 
-    componentDidMount() {
-        let request = { ...this.props.performanceData }
-        let successCallBack = (response) => {
-            let { baseLineData, stashawayReturns } = response
-            this.setState({ ...request, baseLineData, stashawayReturns })
-        }
-        this.fetchPerformanceList(request,successCallBack);
-    }
-
     componentWillReceiveProps(nextProps, state) {
         let request = { ...nextProps.performanceData }
         let successCallBack = (response) => {
-            let { baseLineData, stashawayReturns } = response
-            this.setState({ ...nextProps.performanceData, baseLineData, stashawayReturns })
+            let { baseLineData, stashawayReturns, marker } = response
+            this.setState({ ...nextProps.performanceData, baseLineData, stashawayReturns, marker })
         }
-        this.fetchPerformanceList(request,successCallBack);
+        this.fetchPerformanceList(request, successCallBack);
     }
 
-    async fetchPerformanceList(request,successCallBack) {
+    async fetchPerformanceList(request, successCallBack) {
         try {
             let response = await apiCaller.callAPI('/listAccounts', 'POST', request);
             successCallBack(response);
@@ -53,13 +45,28 @@ class RealTimeChart extends PureComponent {
     }
 
     render() {
-        const { baseLineData, stashawayReturns } = this.state
-
+        const { baseLineData, stashawayReturns, marker } = this.state
         const commonProperties = {
             height: 400,
-            margin: { top: 50, right: 20, bottom: 60, left: 100 },
+            margin: { top: 50, right: 20, bottom: 60, left: 80 },
             animate: true,
             enableSlices: 'x',
+        }
+
+        if (marker) {
+            commonProperties["markers"] =
+                [
+                    {
+                        axis: 'y',
+                        value: this.state.marker.y,
+                        lineStyle: { strokeWidth: 1, stroke: '#fff' },
+                    },
+                    {
+                        axis: 'x',
+                        value: this.state.marker.x,
+                        lineStyle: { strokeWidth: 1, stroke: '#fff' },
+                    },
+                ]
         }
 
         let { locale, currency } = this.state.currencyFormat[this.state.currency]
@@ -73,7 +80,7 @@ class RealTimeChart extends PureComponent {
                 <ResponsiveLine
                     {...commonProperties}
                     data={[
-                        { id: '40% and 60% profit', data: baseLineData },
+                        { id: this.state.selectedIndex, data: baseLineData },
                         { id: 'Stashaway', data: stashawayReturns }
                     ]}
                     xScale={{
