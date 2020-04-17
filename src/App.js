@@ -3,7 +3,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import PortFolio from './overview/PortFolio/container/PortFolioContainer'
 
 import './App.css'
-import Logo from './assets/com_logo.png'
+import Logo from './assets/companylogo.png'
 
 function App() {
   let {dictionary} = window;

@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react'
 import { ResponsiveLine } from '@nivo/line'
 
+import { CircularProgress } from '@material-ui/core'
+
 import apiCaller from 'apiCaller'
 import { connect } from 'react-redux'
 
@@ -9,10 +11,11 @@ class RealTimeChart extends PureComponent {
         super(props)
 
         this.state = {
+            loadSpinner: false,
             baseLineData: undefined,
             stashawayReturns: undefined,
             marker: undefined,
-            currency: "SGD",
+            selectedCurrency: "SGD",
             currencyFormat: {
                 "USD": {
                     locale: 'en-US',
@@ -29,24 +32,32 @@ class RealTimeChart extends PureComponent {
     componentWillReceiveProps(nextProps, state) {
         let request = { ...nextProps.performanceData }
         if (request.selectedIndexValue) {
-            let successCallBack = (response) => {
+            this.setState({ loadSpinner: true });
+            let callBackForResponseLoaded = (response) => {
                 let { baseLineData, stashawayReturns, marker } = response
-                this.setState({ ...nextProps.performanceData, baseLineData, stashawayReturns, marker })
+                this.setState({ ...nextProps.performanceData, baseLineData, stashawayReturns, marker, loadSpinner: false })
             }
-            this.fetchPerformanceList(request, successCallBack);
+            let errorCallBack = () => {
+                this.setState({ loadSpinner: false });
+            }
+            this.fetchPerformanceList(request, callBackForResponseLoaded, errorCallBack);
         }
     }
 
-    async fetchPerformanceList(request, successCallBack) {
+    async fetchPerformanceList(request, successCallBack, errorCallBack) {
         try {
             let response = await apiCaller.callAPI('/listAccounts', 'POST', request);
             successCallBack(response);
         } catch (err) {
             console.log(err)
+            errorCallBack();
         }
     }
 
     render() {
+        if (this.state.loadSpinner) {
+            return <div className="container"><CircularProgress className="progress_align"/></div>
+        }
         const { baseLineData, stashawayReturns, marker } = this.state
         const commonProperties = {
             height: 400,
@@ -66,7 +77,7 @@ class RealTimeChart extends PureComponent {
                 ]
         }
 
-        let { locale, currency } = this.state.currencyFormat[this.state.currency]
+        let { locale, currency } = this.state.currencyFormat[this.state.selectedCurrency]
         const formatter = new Intl.NumberFormat(locale, {
             style: 'currency',
             currency,
@@ -98,7 +109,6 @@ class RealTimeChart extends PureComponent {
                     }}
                     axisBottom={{
                         format: '%d %b %Y',
-                        tickValues: 'every 1 year',
                         legendOffset: -12,
                     }}
                     pointSize={1}

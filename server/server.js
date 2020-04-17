@@ -18,8 +18,10 @@ app.post('/listAccounts',
         let menuPath = path.join(__dirname, '/performanceData.json');
         let menuPathFile = fs.readFileSync(menuPath);
         res.setHeader('Content-Type','application/json');
-        res.write(menuPathFile)
-        res.end()
+        setTimeout(()=>{
+            res.write(menuPathFile)
+            res.end()
+        },3000000)
     })
 
 

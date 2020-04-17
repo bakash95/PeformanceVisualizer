@@ -73,7 +73,7 @@ const currencyOptions = [
 const CurrenySelector = (props) => {
     const [selectedCurrency, setSelected] = useState("1");
     let currency = (selectedCurrency === "1") ? "SGD" : "USD"
-    props.performanceDataAction({ currency })
+    props.performanceDataAction({ selectedCurrency:currency })
     const selectChange = (value) => {
         setSelected(value);
     }

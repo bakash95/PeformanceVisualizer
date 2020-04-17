@@ -46,3 +46,9 @@ html {
 .nav_item {
   margin: 10px
 }
+
+.progress_align {
+  position: relative;
+  margin-left: 45%;
+  margin-top: 5%;
+}
