@@ -30,3 +30,19 @@ html {
   /*added for outline none in mobile devices*/
   -webkit-tap-highlight-color: transparent;
 }
+
+.App-header {
+  display: flex;
+  height: 50px;
+  flex: 0 0 auto;
+}
+
+.nav_items {
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: flex-end;
+}
+
+.nav_item {
+  margin: 10px
+}

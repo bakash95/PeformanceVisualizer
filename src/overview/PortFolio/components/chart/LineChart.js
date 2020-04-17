@@ -28,7 +28,7 @@ class RealTimeChart extends PureComponent {
 
     componentWillReceiveProps(nextProps, state) {
         let request = { ...nextProps.performanceData }
-        if (request.selectedValue) {
+        if (request.selectedIndexValue) {
             let successCallBack = (response) => {
                 let { baseLineData, stashawayReturns, marker } = response
                 this.setState({ ...nextProps.performanceData, baseLineData, stashawayReturns, marker })
@@ -77,7 +77,7 @@ class RealTimeChart extends PureComponent {
                 <ResponsiveLine
                     {...commonProperties}
                     data={[
-                        { id: this.state.selectedIndex, data: baseLineData },
+                        { id: this.state.selectedIndexName, data: baseLineData },
                         { id: 'Stashaway', data: stashawayReturns }
                     ]}
                     xScale={{

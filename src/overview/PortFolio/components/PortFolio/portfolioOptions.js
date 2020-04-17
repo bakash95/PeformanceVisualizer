@@ -40,16 +40,16 @@ const keysForPeriod = [
 ]
 
 const PeriodSelector = (props) => {
-    const [selectedButton, setSelected] = useState("6");
+    const [selectedPeriod, setSelected] = useState("6");
+    props.performanceDataAction({ selectedPeriod })
     const selectChange = (value) => {
         setSelected(value);
-        props.performanceDataAction({ selectedButton })
     }
     return (
         <div className="cardContainer">
             {
                 keysForPeriod.map((item) => {
-                    let selected = item.keyValue === selectedButton ? "selected" : "";
+                    let selected = item.keyValue === selectedPeriod ? "selected" : "";
                     return (
                         <Button keyValue={item.keyValue} selected={selected} onClick={selectChange} className="btn-style">{item.keyName}</Button>
                     )
@@ -71,16 +71,16 @@ const currencyOptions = [
 ]
 
 const CurrenySelector = (props) => {
-    const [selectedButton, setSelected] = useState("1");
+    const [selectedCurrency, setSelected] = useState("1");
+    let currency = (selectedCurrency === "1") ? "SGD" : "USD"
+    props.performanceDataAction({ currency })
     const selectChange = (value) => {
         setSelected(value);
-        let currency = (selectedButton === "1") ? "SGD" : "USD"
-        props.performanceDataAction({ currency })
     }
     return (
         <div className="cardContainer flx-display just-end">
             {currencyOptions.map((item) => {
-                let selected = item.keyValue === selectedButton ? "selected" : "";
+                let selected = item.keyValue === selectedCurrency ? "selected" : "";
                 return (
                     <Button keyValue={item.keyValue} selected={selected} onClick={selectChange} className="btn-style">{item.keyName}</Button>
                 )
