@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { FormControl, MenuItem, Select } from '@material-ui/core';
+import { connect } from 'react-redux';
+
+import { performanceDataAction } from 'redux/actions/performanceDataActions';
 
 const PortFolio = (props) => {
     return (
@@ -54,4 +57,4 @@ const stockComparsionIndex = {
     30: "20% stocks and 80% bonds"
 }
 
-export default PortFolio;
+export default connect(null, { performanceDataAction })(PortFolio);
