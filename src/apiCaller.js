@@ -9,7 +9,7 @@ const callAPI = async (url, httpMethod = "GET",  requestBody = undefined,headers
         signal: controller.signal
     }
 
-    setTimeout(() => { controller.abort() }, 3000)
+    setTimeout(() => { controller.abort() }, 15000)
 
     let response;
     try {
@@ -20,6 +20,6 @@ const callAPI = async (url, httpMethod = "GET",  requestBody = undefined,headers
     return await response.json();
 }
 
-export const basepathDEV = 'http://192.168.0.7:8080'
+export const basepathDEV = process.env.NODE_ENV === 'production' ? 'https://performancevisbe.herokuapp.com' : 'http://localhost:3003'
 
 export default { callAPI };
