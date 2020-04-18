@@ -58,6 +58,7 @@ class RealTimeChart extends PureComponent {
     }
 
     render() {
+        let {dictionary} = window;
         if (this.state.loadSpinner) {
             return <div className="container"><CircularProgress className="progress_align" /></div>
         }
@@ -92,7 +93,7 @@ class RealTimeChart extends PureComponent {
                     {...commonProperties}
                     data={[
                         { id: this.state.selectedIndexName, data: baseLineData },
-                        { id: 'Stashaway', data: stashAwayReturns }
+                        { id: dictionary['stashaway_index_name'], data: stashAwayReturns }
                     ]}
                     xScale={{
                         type: 'time',
@@ -121,7 +122,7 @@ class RealTimeChart extends PureComponent {
                         from: 'color',
                         modifiers: [['darker', 0.3]],
                     }}
-                    colors={{ scheme: 'nivo' }}
+                    colors={['rgb(244, 117, 96)','rgb(56, 132, 217)']}
                     enableCrosshair={false}
                     sliceTooltip={(props) => popupForPerformanceDetail(props, formatter)}
                     theme={themeForLineChart}

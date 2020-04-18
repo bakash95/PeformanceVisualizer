@@ -48,11 +48,12 @@ const ToggleMenu = () => {
 }
 
 const InternalNavBar = () => {
+    let dictionary = window.dictionary;
     return <div className="internal-nav">
-        <span className="nav_item internal-nav-selected">Overview</span>
-        <span className="nav_item">Assets</span>
-        <span className="nav_item">Projection</span>
-        <span className="nav_item">About Portfolio</span>
+        <span className="nav_item internal-nav-selected">{dictionary['overview']}</span>
+        <span className="nav_item">{dictionary['assets']}</span>
+        <span className="nav_item">{dictionary['projection']}</span>
+        <span className="nav_item">{dictionary['about_portfolio']}</span>
     </div>
 }
 

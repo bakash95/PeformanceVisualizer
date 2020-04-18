@@ -8,6 +8,9 @@ let dictionaryEn = {
     'portfolio_benchmark':'Portfolio benchmark',
     'stashaway_index_name':'Stash Away Risk Index 14%',
     'benchmark_placeholder':'Which benchmark do you want to compare',
+    'assets':'Assets',
+    'projection':'Projection',
+    'about_portfolio':'About Portfolio',
 }
 
 let dictionaryChi = {
