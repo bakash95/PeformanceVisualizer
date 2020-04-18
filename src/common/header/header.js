@@ -1,5 +1,5 @@
-import React from 'react'
-import { AppBar, Toolbar, IconButton } from '@material-ui/core';
+import React, { useState } from 'react'
+import { AppBar, Toolbar, IconButton, Snackbar, SnackbarContent, makeStyles } from '@material-ui/core';
 
 import Logo from 'assets/companylogo.png'
 import './css/header.css'
@@ -10,6 +10,7 @@ const ToggleMenu = () => {
     let { dictionary } = window;
     return (
         <>
+            <SnackBar />
             <AppBar className="container"
                 elevation={0}
                 position="relative"
@@ -24,7 +25,7 @@ const ToggleMenu = () => {
                         <p className="nav_item">{dictionary['Support']}</p>
                     </div>
                 </header>
-                <Toolbar className="hide-sm flx-display">
+                <Toolbar className="hide-md flx-display">
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
@@ -49,6 +50,17 @@ const ToggleMenu = () => {
             </div>
         </>
     )
+}
+
+//this component is only visible for smaller devices
+const SnackBar = () => {
+    let [open, setOpen] = useState(true);
+    let toggleClose = () => {
+        setOpen(false);
+    }
+    return <Snackbar className="hide-md" open={open} onClose={toggleClose} >
+        <SnackbarContent message="Please Tilt your phone for the best possible experience" />
+    </Snackbar >
 }
 
 export default ToggleMenu;

@@ -9,7 +9,7 @@
     font-size: 1rem;
 }
 
-.hide-sm {
+.hide-md {
     display: inline;
 }
 
@@ -27,7 +27,7 @@
 }
 
 @media screen and (min-width:450px) {
-    .hide-sm {
+    .hide-md {
         display: none !important;
     }
     .show-sm {

@@ -20,6 +20,6 @@ const callAPI = async (url, httpMethod = "GET",  requestBody = undefined,headers
     return await response.json();
 }
 
-export const basepathDEV = 'http://localhost:8080'
+export const basepathDEV = 'http://192.168.0.7:8080'
 
 export default { callAPI };
