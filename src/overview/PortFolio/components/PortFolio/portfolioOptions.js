@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import {Button} from 'common/components/components'
@@ -34,7 +34,9 @@ const keysForPeriod = [
 
 const PeriodSelector = (props) => {
     const [selectedPeriod, setSelected] = useState("5Y");
-    props.performanceDataAction({ selectedPeriod })
+    useEffect(()=>{
+        props.performanceDataAction({ selectedPeriod })
+    })
     const selectChange = (value) => {
         setSelected(value);
     }
@@ -66,7 +68,9 @@ const currencyOptions = [
 const CurrenySelector = (props) => {
     const [selectedCurrency, setSelected] = useState("1");
     let currency = (selectedCurrency === "1") ? "SGD" : "USD"
-    props.performanceDataAction({ selectedCurrency:currency })
+    useEffect(()=>{
+        props.performanceDataAction({ selectedCurrency:currency })
+    })
     const selectChange = (value) => {
         setSelected(value);
     }

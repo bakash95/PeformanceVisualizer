@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FormControl, MenuItem, Select } from '@material-ui/core';
 import { connect } from 'react-redux';
 
@@ -33,9 +33,11 @@ const PortFolio = (props) => {
 
 const SelectField = (props) => {
     let [selectedIndexValue, setSelected] = useState(-1);
+    useEffect(()=>{
+        props.onChange(selectedIndexValue, stockComparsionIndex[selectedIndexValue]);
+    })
     let onChange = (event) => {
         let selectedValue = event.target.value
-        props.onChange(selectedValue, stockComparsionIndex[selectedValue]);
         setSelected(selectedValue);
     }
     return (
