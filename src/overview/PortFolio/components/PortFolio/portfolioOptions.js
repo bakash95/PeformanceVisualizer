@@ -1,16 +1,9 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
+import {Button} from 'common/components/components'
 import { performanceDataAction } from 'redux/actions/performanceDataActions';
 import './css/portfolioOptions.css'
-
-const Button = (props) => {
-    let selected = props.selected ? "selected" : ""
-    let classes = `${props.className} ${selected}`
-    return (
-        <button className={classes} onClick={() => props.onClick(props.keyValue)}>{props.children}</button>
-    )
-}
 
 const keysForPeriod = [
     {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { AppBar, Toolbar, IconButton, Snackbar, SnackbarContent, makeStyles } from '@material-ui/core';
+import { AppBar, Toolbar, IconButton, Snackbar, SnackbarContent } from '@material-ui/core';
 
 import Logo from 'assets/companylogo.png'
 import './css/header.css'
@@ -42,14 +42,18 @@ const ToggleMenu = () => {
                     <h1>{dictionary['General_Investing']}</h1>
                 </div>
             </AppBar>
-            <div className="internal-nav">
-                <span className="nav_item internal-nav-selected">Overview</span>
-                <span className="nav_item">Assets</span>
-                <span className="nav_item">Projection</span>
-                <span className="nav_item">About Portfolio</span>
-            </div>
+            <InternalNavBar />
         </>
     )
+}
+
+const InternalNavBar = () => {
+    return <div className="internal-nav">
+        <span className="nav_item internal-nav-selected">Overview</span>
+        <span className="nav_item">Assets</span>
+        <span className="nav_item">Projection</span>
+        <span className="nav_item">About Portfolio</span>
+    </div>
 }
 
 //this component is only visible for smaller devices
