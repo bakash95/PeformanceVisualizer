@@ -1,0 +1,36 @@
+.nav_items {
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: flex-end;
+}
+
+.nav_item {
+    padding: 3px 10px;
+    font-size: 1rem;
+}
+
+.hide-sm {
+    display: inline;
+}
+
+.show-sm {
+    display: none;
+}
+
+.internal-nav {
+    display: inline-flex;
+    padding: 1% 4% 0% 4%;
+}
+
+.internal-nav-selected {
+    border-bottom: 3px solid rgb(63, 182, 178);
+}
+
+@media screen and (min-width:450px) {
+    .hide-sm {
+        display: none !important;
+    }
+    .show-sm {
+        display: inherit
+    }
+}

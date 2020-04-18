@@ -1,5 +1,5 @@
 *::-webkit-scrollbar {
-  width: 1em;
+  width: 10px;
 }
 
 *::-webkit-scrollbar-track {
@@ -50,33 +50,6 @@ html {
   display: flex;
   height: 60px;
   flex: 0 0 auto;
-}
-
-.nav_items {
-  display: flex;
-  flex: 1 1 auto;
-  justify-content: flex-end;
-}
-
-.nav_item {
-  padding: 3px 10px
-}
-
-.hide-sm {
-  display: inline;
-}
-
-.show-sm{
-  display: none;
-}
-
-@media screen and (min-width:450px) {
-  .hide-sm {
-    display: none !important;
-  }
-  .show-sm{
-    display: inherit
-  }
 }
 
 h1 {
