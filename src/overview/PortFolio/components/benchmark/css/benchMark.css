@@ -1,8 +1,7 @@
 .vs_relative {
     display: flex;
-    align-items: center;
-    position: relative;
-    left: 50%;
+    position: absolute;
+    left: 49%;
 }
 
 .vs_circle {
@@ -17,11 +16,13 @@
     -webkit-border-radius: 15px;
     vertical-align: middle;
     -moz-border-radius: 15px;
+    top: 35px;
+    position: relative;
 }
 
 @media screen and (max-width:780px) and (min-width:500px) {
     .vs_relative {
-        left: 45%;
+        left: 48%;
     }
 }
 

@@ -11,16 +11,16 @@ const PortFolio = (props) => {
     return (
         <div className="container">
             <h3>{dictionary["portfolio_benchmark"]}</h3>
-            <section className="flx-display">
-                <div className="vs_relative">
-                    <p className="vs_circle">vs</p>
-                </div>
+            <section className="tbl-display">
                 <article className="cardContainer" style={{ background: '#f5f5f5' }}>
                     <div className="cardText">
                         <summary className="cardTextHeader">{dictionary["General_Investing"]}</summary>
                         <p className="cardTextContent"><b>{dictionary["stashaway_index_name"]}</b></p>
                     </div>
                 </article>
+                <div className="vs_relative">
+                    <span className="vs_circle">vs</span>
+                </div>
                 <article className="cardContainer" style={{ background: 'rgb(239, 238, 238)' }}>
                     <div className="cardText">
                         <SelectField onChange={(selectedIndexValue, selectedIndexName) => { props.performanceDataAction({ selectedIndexValue, selectedIndexName }) }} />
@@ -40,8 +40,9 @@ const SelectField = (props) => {
     }
     return (
         <div className="pd10">
-            <FormControl className="width-80" variant="outlined">
-                <Select
+            <FormControl variant="outlined">
+                <Select style={{ maxWidth: '320px'}}
+                    autoWidth={false}
                     labelId="outlined-age-native-simple-label"
                     id="outlined-age-native-simple"
                     onChange={onChange}

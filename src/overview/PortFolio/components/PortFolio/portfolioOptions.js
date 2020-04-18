@@ -71,7 +71,7 @@ const CurrenySelector = (props) => {
         setSelected(value);
     }
     return (
-        <div className="cardContainer flx-display just-end">
+        <div className="cardContainer tbl-display just-end">
             {currencyOptions.map((item) => {
                 let selected = item.keyValue === selectedCurrency ? "selected" : "";
                 return (
@@ -84,7 +84,7 @@ const CurrenySelector = (props) => {
 }
 
 const GraphOptions = (props) => {
-    return (<div className="container flx-display">
+    return (<div className="container tbl-display">
         <PeriodSelector {...props} />
         <CurrenySelector{...props} />
     </div >
