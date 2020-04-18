@@ -13,6 +13,7 @@ export const popupForPerformanceDetail = (props, formatter) => {
                         date = new Date(point.data.xFormatted).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
                         return true;
                     }
+                    return false;
                 })
             }
             <p>{date}</p>
