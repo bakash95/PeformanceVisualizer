@@ -1,0 +1,1 @@
+export let fetchPerformanceData = '/getPerformanceData';

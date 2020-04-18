@@ -9,6 +9,8 @@ import { popupForPerformanceDetail } from './lineCharHelper'
 import apiCaller from 'apiCaller'
 import { connect } from 'react-redux'
 
+import {fetchPerformanceData} from 'overview/PortFolio/portFolioActions'
+
 class RealTimeChart extends PureComponent {
     constructor(props) {
         super(props)
@@ -49,7 +51,7 @@ class RealTimeChart extends PureComponent {
 
     async fetchPerformanceList(request, successCallBack, errorCallBack) {
         try {
-            let response = await apiCaller.callAPI('/getPerformanceData', 'POST', request);
+            let response = await apiCaller.callAPI(fetchPerformanceData, 'POST', request);
             successCallBack(response);
         } catch (err) {
             console.log(err)
@@ -58,28 +60,12 @@ class RealTimeChart extends PureComponent {
     }
 
     render() {
-        let {dictionary} = window;
         if (this.state.loadSpinner) {
             return <div className="container"><CircularProgress className="progress_align" /></div>
         }
-        const { baseLineData, stashAwayReturns, marker } = this.state
-        const commonProperties = {
-            height: 400,
-            margin: { top: 50, right: 20, bottom: 60, left: 80 },
-            animate: true,
-            enableSlices: 'x',
-        }
 
-        if (marker) {
-            commonProperties["markers"] =
-                [
-                    {
-                        axis: 'x',
-                        value: new Date(this.state.marker.x),
-                        lineStyle: { strokeWidth: 1, stroke: 'rgb(63, 182, 178)' },
-                    },
-                ]
-        }
+        let { dictionary } = window;
+        const { baseLineData, stashAwayReturns, marker, selectedIndexName } = this.state
 
         let { locale, currency } = this.state.currencyFormat[this.state.selectedCurrency]
         const formatter = new Intl.NumberFormat(locale, {
@@ -87,51 +73,74 @@ class RealTimeChart extends PureComponent {
             currency,
         })
 
+        const chartProperties = getPropertiesForLineChart(baseLineData, dictionary, stashAwayReturns, formatter, marker, selectedIndexName)
+
         return (
-            baseLineData ? <div className="container-chart" style={{ height: commonProperties.height, background: 'rgb(7, 35, 64)' }}>
-                <ResponsiveLine
-                    {...commonProperties}
-                    data={[
-                        { id: this.state.selectedIndexName, data: baseLineData },
-                        { id: dictionary['stashaway_index_name'], data: stashAwayReturns }
-                    ]}
-                    xScale={{
-                        type: 'time',
-                        format: '%Y-%m-%d',
-                        precision: 'day',
-                    }}
-                    xFormat="time:%Y-%m-%d"
-                    yScale={{
-                        type: 'linear',
-                    }}
-                    curve="monotoneX"
-                    axisLeft={{
-                        format: (value) => {
-                            return formatter.format(value);
-                        },
-                        tickRotation: 0,
-                    }}
-                    axisBottom={{
-                        format: '%d %b %Y',
-                        legendOffset: -12,
-                    }}
-                    enableGridX={false}
-                    pointSize={1}
-                    pointBorderWidth={1}
-                    pointBorderColor={{
-                        from: 'color',
-                        modifiers: [['darker', 0.3]],
-                    }}
-                    colors={['rgb(244, 117, 96)','rgb(56, 132, 217)']}
-                    enableCrosshair={false}
-                    sliceTooltip={(props) => popupForPerformanceDetail(props, formatter)}
-                    theme={themeForLineChart}
-                />
-            </div>
+            baseLineData ?
+                <div className="container-chart" style={{ height: chartProperties.height, background: 'rgb(7, 35, 64)' }}>
+                    <ResponsiveLine
+                        {...chartProperties}
+                        sliceTooltip={(props) => popupForPerformanceDetail(props, formatter)}
+                        theme={themeForLineChart}
+                    />
+                </div>
                 :
                 <div />
         )
     }
+}
+
+let getPropertiesForLineChart = (baseLineData, dictionary, stashAwayReturns, formatter, marker, selectedIndexName) => {
+    const chartProperties = {
+        height: 400,
+        margin: { top: 50, right: 20, bottom: 60, left: 80 },
+        animate: true,
+        enableSlices: 'x',
+        xScale: {
+            type: 'time',
+            format: '%Y-%m-%d',
+            precision: 'day',
+        },
+        xFormat: "time:%Y-%m-%d",
+        yScale: {
+            type: 'linear',
+        },
+        curve: "monotoneX",
+        axisBottom: {
+            format: '%d %b %Y',
+            legendOffset: -12,
+        },
+        enableGridX: false,
+        pointSize: 1,
+        pointBorderWidth: 1,
+        pointBorderColor: {
+            from: 'color',
+            modifiers: [['darker', 0.3]],
+        },
+        colors: ['rgb(244, 117, 96)', 'rgb(56, 132, 217)'],
+        enableCrosshair: false,
+        data: [
+            { id: selectedIndexName, data: baseLineData },
+            { id: dictionary['stashaway_index_name'], data: stashAwayReturns }
+        ],
+        axisLeft: {
+            format: (value) => {
+                return formatter.format(value)
+            },
+            tickRotation: 0,
+        }
+    }
+    if (marker) {
+        chartProperties["markers"] =
+            [
+                {
+                    axis: 'x',
+                    value: new Date(marker.x),
+                    lineStyle: { strokeWidth: 1, stroke: 'rgb(63, 182, 178)' },
+                },
+            ]
+    }
+    return chartProperties
 }
 
 let themeForLineChart = {
