@@ -1,16 +1,28 @@
-const express = require('express');
-const favicon = require('express-favicon');
-const path = require('path');
-const port = process.env.PORT || 8080;
-const app = express();
-app.use(favicon(__dirname + '/build/favicon.ico'));
-// the __dirname is the current directory from where the script is running
-app.use(express.static(__dirname));
-app.use(express.static(path.join(__dirname, 'build')));
-app.get('/ping', function (req, res) {
-  return res.send('pong');
+let express = require('express');
+let bodyParser = require('body-parser');
+let fs = require('fs');
+let path = require('path');
+
+let app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
 });
-app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
-app.listen(port);
+
+app.post('/getPerformanceData',
+    (req, res) => {
+        let menuPath = path.join(__dirname, '/performanceData.json');
+        let menuPathFile = fs.readFileSync(menuPath);
+        res.setHeader('Content-Type','application/json');
+        setTimeout(()=>{
+            res.write(menuPathFile)
+            res.end()
+        },2000)
+    })
+
+
+app.listen('3003');
