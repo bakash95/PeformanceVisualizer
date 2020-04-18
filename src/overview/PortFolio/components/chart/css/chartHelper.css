@@ -1,0 +1,12 @@
+.slice-styling {
+    background: white;
+    padding: 9px 12px;
+    width: 100%;
+    border: 1px solid #ccc;
+    text-align: end;
+    border-radius: 10px
+}
+
+.indexname-style{
+    font-size: 0.8em;
+}

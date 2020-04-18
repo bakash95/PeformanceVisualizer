@@ -15,32 +15,32 @@ const Button = (props) => {
 const keysForPeriod = [
     {
         "keyName": "1 month",
-        "keyValue": "1"
+        "keyValue": "1M"
     },
     {
         "keyName": "6 months",
-        "keyValue": "2"
+        "keyValue": "6M"
     },
     {
         "keyName": "Year-to-date",
-        "keyValue": "3"
+        "keyValue": "YTD"
     },
     {
         "keyName": "1 year",
-        "keyValue": "4"
+        "keyValue": "1Y"
     },
     {
         "keyName": "5 years",
-        "keyValue": "5"
+        "keyValue": "5Y"
     },
     {
         "keyName": "Max",
-        "keyValue": "6"
+        "keyValue": "4Y"
     }
 ]
 
 const PeriodSelector = (props) => {
-    const [selectedPeriod, setSelected] = useState("6");
+    const [selectedPeriod, setSelected] = useState("5Y");
     props.performanceDataAction({ selectedPeriod })
     const selectChange = (value) => {
         setSelected(value);

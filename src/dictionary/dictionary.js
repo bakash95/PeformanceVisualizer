@@ -4,7 +4,10 @@ let dictionaryEn = {
     'Refer_friend': 'Refer a friend',
     'Support': 'Support',
     'General_Investing': 'General Investing',
-    'overview':'overview',
+    'overview':'Overview',
+    'portfolio_benchmark':'Portfolio benchmark',
+    'stashaway_index_name':'Stash Away Risk Index 14%',
+    'benchmark_placeholder':'Which benchmark do you want to compare',
 }
 
 let dictionaryChi = {

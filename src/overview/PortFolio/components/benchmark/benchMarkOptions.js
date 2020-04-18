@@ -4,15 +4,21 @@ import { connect } from 'react-redux';
 
 import { performanceDataAction } from 'redux/actions/performanceDataActions';
 
+import './css/benchMark.css'
+
 const PortFolio = (props) => {
+    let { dictionary } = window;
     return (
         <div className="container">
-            <h3>Portfolio benchmark</h3>
+            <h3>{dictionary["portfolio_benchmark"]}</h3>
             <section className="flx-display">
+                <div className="vs_relative">
+                    <p className="vs_circle">vs</p>
+                </div>
                 <article className="cardContainer" style={{ background: '#f5f5f5' }}>
                     <div className="cardText">
-                        <summary className="cardTextHeader">General Investing</summary>
-                        <p className="cardTextContent"><b>Stash Away Risk Index 14%</b></p>
+                        <summary className="cardTextHeader">{dictionary["General_Investing"]}</summary>
+                        <p className="cardTextContent"><b>{dictionary["stashaway_index_name"]}</b></p>
                     </div>
                 </article>
                 <article className="cardContainer" style={{ background: 'rgb(239, 238, 238)' }}>
@@ -41,7 +47,7 @@ const SelectField = (props) => {
                     onChange={onChange}
                     value={selectedIndexValue}
                 >
-                    <MenuItem value="-1" disabled>Which benchmark do you want to compare</MenuItem>
+                    <MenuItem value="-1" disabled>{window.dictionary["benchmark_placeholder"]}</MenuItem>
                     <MenuItem value={10}>{stockComparsionIndex[10]}</MenuItem>
                     <MenuItem value={20}>{stockComparsionIndex[20]}</MenuItem>
                     <MenuItem value={30}>{stockComparsionIndex[30]}</MenuItem>
@@ -52,9 +58,8 @@ const SelectField = (props) => {
 }
 
 const stockComparsionIndex = {
-    10: "mix of 60% stocks (VTSMX ETF)",
-    20: "40% bonds (VBMFX ETF)",
-    30: "20% stocks and 80% bonds"
+    10: "60% stocks (VTSMX ETF) and 40% bonds (VBMFX ETF)",
+    20: "20% stocks (VTSMX ETF) and 80% bonds (VBMFX ETF)"
 }
 
 export default connect(null, { performanceDataAction })(PortFolio);

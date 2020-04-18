@@ -1,0 +1,32 @@
+.vs_relative {
+    display: flex;
+    align-items: center;
+    position: relative;
+    left: 50%;
+}
+
+.vs_circle {
+    border-radius: 15px;
+    height: 30px;
+    width: 30px;
+    line-height: 25px;
+    text-align: center;
+    background: rgb(56, 132, 217);
+    pointer-events: none;
+    color: white;
+    -webkit-border-radius: 15px;
+    vertical-align: middle;
+    -moz-border-radius: 15px;
+}
+
+@media screen and (max-width:780px) and (min-width:500px) {
+    .vs_relative {
+        left: 45%;
+    }
+}
+
+@media screen and (max-width:425px) {
+    .vs_relative {
+        display: none;
+    }
+}

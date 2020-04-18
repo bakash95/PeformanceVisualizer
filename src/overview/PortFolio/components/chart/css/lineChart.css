@@ -1,0 +1,10 @@
+.container-chart{
+    margin: 1% 4% 2% 4%;
+    width: 92%;
+    transition: all 0.5s ease-in;
+}
+
+.align-spinner{
+    display: flex;
+    align-items: center;
+}

@@ -13,7 +13,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.post('/listAccounts',
+app.post('/getPerformanceData',
     (req, res) => {
         let menuPath = path.join(__dirname, '/performanceData.json');
         let menuPathFile = fs.readFileSync(menuPath);
@@ -21,7 +21,7 @@ app.post('/listAccounts',
         setTimeout(()=>{
             res.write(menuPathFile)
             res.end()
-        },3000000)
+        },2000)
     })
 
 

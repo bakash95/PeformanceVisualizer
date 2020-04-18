@@ -31,9 +31,24 @@ html {
   -webkit-tap-highlight-color: transparent;
 }
 
+.container {
+  padding: 1% 4% 2% 4%;
+  width: 92%;
+}
+
+.App-Container {
+  color: white;
+  background: rgb(7, 35, 64);
+  box-shadow: none;
+}
+
+.theme_txt_clr {
+  color: rgb(63, 182, 178);
+}
+
 .App-header {
   display: flex;
-  height: 50px;
+  height: 60px;
   flex: 0 0 auto;
 }
 
@@ -44,11 +59,32 @@ html {
 }
 
 .nav_item {
-  margin: 10px
+  padding: 3px 10px
 }
 
-.progress_align {
-  position: relative;
-  margin-left: 45%;
-  margin-top: 5%;
+.hide-sm {
+  display: inline;
+}
+
+.show-sm{
+  display: none;
+}
+
+@media screen and (min-width:450px) {
+  .hide-sm {
+    display: none !important;
+  }
+  .show-sm{
+    display: inherit
+  }
+}
+
+h1 {
+  padding: 10px 5px;
+  margin: 0px
+}
+
+h3 {
+  padding: 20px 10px;
+  margin: 0px;
 }
