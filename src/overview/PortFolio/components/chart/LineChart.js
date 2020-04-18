@@ -34,8 +34,7 @@ class RealTimeChart extends PureComponent {
 
     componentWillReceiveProps(nextProps, state) {
         let request = { ...nextProps.performanceData }
-        if (request.selectedIndexValue) {
-            //for now spinner is disabled as the loading time is negligible
+        if (request.selectedIndexValue && request.selectedIndexValue !== -1) {
             this.setState({ loadSpinner: true });
             let callBackForResponseLoaded = (response) => {
                 let { baseLineData, stashAwayReturns, marker } = response
