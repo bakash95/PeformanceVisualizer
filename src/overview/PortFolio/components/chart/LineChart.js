@@ -85,7 +85,7 @@ class RealTimeChart extends PureComponent {
                     </div>
                     <ResponsiveLine
                         {...chartProperties}
-                        sliceTooltip={(props) => popupForPerformanceDetail(props, formatter,currency)}
+                        sliceTooltip={(props) => popupForPerformanceDetail(props, formatter, currency)}
                         theme={themeForLineChart}
                     />
                 </div>
@@ -122,7 +122,7 @@ let getPropertiesForLineChart = (baseLineData, dictionary, stashAwayReturns, for
             from: 'color',
             modifiers: [['darker', 0.3]],
         },
-        colors: ['rgb(244, 117, 96)', 'rgb(56, 132, 217)'],
+        colors: ['rgb(232, 178, 63)', 'rgb(56, 132, 217)'],
         enableCrosshair: false,
         data: [
             { id: selectedIndexName, data: baseLineData },
@@ -133,7 +133,22 @@ let getPropertiesForLineChart = (baseLineData, dictionary, stashAwayReturns, for
                 return formatter.format(value)
             },
             tickRotation: 0,
-        }
+        },
+        legends: [
+            {
+                "anchor": "bottom",
+                "direction": "row",
+                "justify": false,
+                "translateX": -30,
+                "translateY": 60,
+                "itemDirection": "left-to-right",
+                "itemWidth": 200,
+                "itemHeight": 30,
+                "symbolSize": 8,
+                "itemTextColor":"white",
+                "symbolShape": "square"
+            }
+        ]
     }
     if (marker) {
         chartProperties["markers"] =
