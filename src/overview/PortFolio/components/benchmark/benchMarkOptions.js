@@ -33,7 +33,7 @@ const PortFolio = (props) => {
 
 const SelectField = (props) => {
     let [selectedIndexValue, setSelected] = useState(-1);
-    useEffect(()=>{
+    useEffect(() => {
         props.onChange(selectedIndexValue, stockComparsionIndex[selectedIndexValue]);
     })
     let onChange = (event) => {
@@ -50,14 +50,22 @@ const SelectField = (props) => {
                     onChange={onChange}
                     value={selectedIndexValue}>
                     <MenuItem value="-1" disabled>{window.dictionary["benchmark_placeholder"]}</MenuItem>
-                    {
-                        Object.entries(stockComparsionIndex).forEach(([key,value])=>{
-                            return <MenuItem value={key}>{stockComparsionIndex[key]}</MenuItem>;
-                        })
-                    }
+                    <StockIndexOptions />
                 </Select>
             </FormControl>
         </div>
+    )
+}
+
+const StockIndexOptions = () => {
+    return (
+        <>
+            {
+                Object.entries(stockComparsionIndex).map(([key, value]) => {
+                    return <MenuItem value={key}>{value}</MenuItem>;
+                })
+            }
+        </>
     )
 }
 
