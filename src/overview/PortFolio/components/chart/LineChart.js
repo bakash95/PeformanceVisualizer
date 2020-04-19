@@ -61,7 +61,7 @@ class RealTimeChart extends PureComponent {
 
     render() {
         if (this.state.loadSpinner) {
-            return <div className="container"><CircularProgress className="progress_align" /></div>
+            return <div className="container-frame"><CircularProgress className="progress_align" /></div>
         }
 
         let { dictionary } = window;

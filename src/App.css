@@ -45,11 +45,6 @@ html {
   }
 }
 
-.container {
-  padding: 1% 4% 2% 4%;
-  width: 92%;
-}
-
 .App-Container {
   color: white;
   background: rgb(7, 35, 64);
@@ -67,11 +62,11 @@ html {
 }
 
 h1 {
-  padding: 10px 5px;
+  padding: 10px 5px 10px 0px;
   margin: 0px
 }
 
 h3 {
-  padding: 20px 10px;
+  padding: 20px 10px 20px 0px;
   margin: 0px;
 }

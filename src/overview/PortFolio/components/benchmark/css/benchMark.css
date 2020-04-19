@@ -2,6 +2,7 @@
     display: flex;
     position: absolute;
     left: 49%;
+    z-index: 1;
 }
 
 .vs_circle {
@@ -20,9 +21,9 @@
     position: relative;
 }
 
-.wdth-max{
-    width: 90%;
-    max-width : 320px
+.maxwdth-white {
+    width: 100%;
+    background: white;
 }
 
 @media screen and (max-width:780px) and (min-width:500px) {
@@ -33,6 +34,7 @@
 
 @media screen and (max-width:425px) {
     .vs_relative {
-        display: none;
+        left: 42%;
+        top: 22%;
     }
 }

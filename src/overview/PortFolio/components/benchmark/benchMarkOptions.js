@@ -9,10 +9,10 @@ import './css/benchMark.css'
 const PortFolio = (props) => {
     let { dictionary } = window;
     return (
-        <div className="container">
+        <div className="pl-md-5 pr-md-5 col-12">
             <h3>{dictionary["portfolio_benchmark"]}</h3>
-            <section className="tbl-display">
-                <article className="cardContainer" style={{ background: '#f5f5f5' }}>
+            <section className="row col-12 p-0 ml-0">
+                <article className="col-12 col-sm-6 p-3" style={{ background: '#f5f5f5' }}>
                     <div className="cardText">
                         <summary className="cardTextHeader">{dictionary["General_Investing"]}</summary>
                         <p className="cardTextContent"><b>{dictionary["stashaway_index_name"]}</b></p>
@@ -21,7 +21,7 @@ const PortFolio = (props) => {
                 <div className="vs_relative">
                     <span className="vs_circle">vs</span>
                 </div>
-                <article className="cardContainer" style={{ background: 'rgb(239, 238, 238)' }}>
+                <article className="col-12 col-sm-6 p-3" style={{ background: 'rgb(239, 238, 238)' }}>
                     <div className="cardText">
                         <SelectField onChange={(selectedIndexValue, selectedIndexName) => { props.performanceDataAction({ selectedIndexValue, selectedIndexName }) }} />
                     </div>
@@ -42,18 +42,19 @@ const SelectField = (props) => {
     }
     return (
         <div className="pd10">
-            <FormControl className="wdth-max" variant="outlined">
-                <Select className="wdth-max"
+            <FormControl className="maxwdth-white" variant="outlined">
+                <Select className="maxwdth-white"
                     autoWidth={false}
                     labelId="outlined-age-native-simple-label"
                     id="outlined-age-native-simple"
                     onChange={onChange}
-                    value={selectedIndexValue}
-                >
+                    value={selectedIndexValue}>
                     <MenuItem value="-1" disabled>{window.dictionary["benchmark_placeholder"]}</MenuItem>
-                    <MenuItem value={10}>{stockComparsionIndex[10]}</MenuItem>
-                    <MenuItem value={20}>{stockComparsionIndex[20]}</MenuItem>
-                    <MenuItem value={30}>{stockComparsionIndex[30]}</MenuItem>
+                    {
+                        Object.entries(stockComparsionIndex).forEach(([key,value])=>{
+                            return <MenuItem value={key}>{stockComparsionIndex[key]}</MenuItem>;
+                        })
+                    }
                 </Select>
             </FormControl>
         </div>

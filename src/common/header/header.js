@@ -1,48 +1,45 @@
 import React, { useState } from 'react'
 import { AppBar, Toolbar, IconButton, Snackbar, SnackbarContent } from '@material-ui/core';
+import MenuIcon from '@material-ui/icons/Menu'
 
 import Logo from 'assets/companylogo.png'
 import './css/header.css'
 
-import MenuIcon from '@material-ui/icons/Menu'
 
 const ToggleMenu = () => {
     let { dictionary } = window;
     return (
         <>
             <SnackBar />
-            <AppBar className="container"
-                elevation={0}
-                position="relative"
-                color="transparent"
-            >
-                <header className="App-header show-sm">
-                    <img src={Logo} alt="logo" width="10%" height="100%" />
-                    <div className="nav_items">
-                        <p className="nav_item">{dictionary['Home']}</p>
-                        <p className="nav_item">{dictionary['Manage_Deposits']}</p>
-                        <p className="nav_item">{dictionary['Refer_friend']}</p>
-                        <p className="nav_item">{dictionary['Support']}</p>
-                    </div>
-                </header>
-                <Toolbar disableGutters={true} className="hide-md flx-display">
-                    <IconButton size='small'
-                        color="inherit"
-                        aria-label="open drawer"
-                        edge="end"
-                        onClick={() => { }}
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                </Toolbar>
-                <div>
-                    <>
-                        <b className="theme_txt_clr">&larr; {dictionary['overview']}</b>
-                    </>
-                    <h1>{dictionary['General_Investing']}</h1>
-                </div>
-            </AppBar>
-            <InternalNavBar />
+            <div className="col-12 pl-md-5 ">
+                <AppBar
+                    elevation={0}
+                    position="relative"
+                    color="transparent"
+                >
+                    <header className="App-header show-sm">
+                        <img src={Logo} alt="logo" className="logo-styl" />
+                        <div className="pt-2 pr-4 nav_items">
+                            <p className="nav_item">{dictionary['Home']}</p>
+                            <p className="nav_item">{dictionary['Manage_Deposits']}</p>
+                            <p className="nav_item">{dictionary['Refer_friend']}</p>
+                            <p className="nav_item">{dictionary['Support']}</p>
+                        </div>
+                    </header>
+                    <Toolbar disableGutters={true} className="hide-md flx-display">
+                        <IconButton size='small'
+                            color="inherit"
+                            aria-label="open drawer"
+                            edge="end"
+                            onClick={() => { }}>
+                            <MenuIcon />
+                        </IconButton>
+                    </Toolbar>
+                    <b className="theme_txt_clr">&larr; {dictionary['overview']}</b>
+                    <h3>{dictionary['General_Investing']}</h3>
+                </AppBar>
+                <InternalNavBar />
+            </div>
         </>
     )
 }
@@ -57,14 +54,15 @@ const InternalNavBar = () => {
     </div>
 }
 
-//this component is only visible for smaller devices
+/*this component is only visible for mobile devices
+    shows a disclaimer to inform user to use landscape mode */
 const SnackBar = () => {
     let [open, setOpen] = useState(true);
     let toggleClose = () => {
         setOpen(false);
     }
     return <Snackbar className="hide-md" open={open} onClose={toggleClose} >
-        <SnackbarContent message="Please Tilt your phone for the best possible experience" />
+        <SnackbarContent message={window.dictionary['disclaimer_mobile']} />
     </Snackbar >
 }
 

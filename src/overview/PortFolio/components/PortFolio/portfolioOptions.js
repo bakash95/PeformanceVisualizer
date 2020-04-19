@@ -88,7 +88,7 @@ const CurrenySelector = (props) => {
 }
 
 const GraphOptions = (props) => {
-    return (<div className="container tbl-display">
+    return (<div className="pl-md-4 pr-md-4 tbl-display">
         <PeriodSelector {...props} />
         <CurrenySelector{...props} />
     </div >

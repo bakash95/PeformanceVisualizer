@@ -11,6 +11,7 @@ let dictionaryEn = {
     'assets':'Assets',
     'projection':'Projection',
     'about_portfolio':'About Portfolio',
+    'disclaimer_mobile':'Please Tilt your phone for the best possible experience'
 }
 
 let dictionaryChi = {
