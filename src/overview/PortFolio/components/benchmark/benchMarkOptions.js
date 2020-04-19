@@ -53,6 +53,7 @@ const SelectField = (props) => {
                     <MenuItem value="-1" disabled>{window.dictionary["benchmark_placeholder"]}</MenuItem>
                     <MenuItem value={10}>{stockComparsionIndex[10]}</MenuItem>
                     <MenuItem value={20}>{stockComparsionIndex[20]}</MenuItem>
+                    <MenuItem value={30}>{stockComparsionIndex[30]}</MenuItem>
                 </Select>
             </FormControl>
         </div>
@@ -61,7 +62,8 @@ const SelectField = (props) => {
 
 const stockComparsionIndex = {
     10: "60% stocks (VTSMX ETF) and 40% bonds (VBMFX ETF)",
-    20: "20% stocks (VTSMX ETF) and 80% bonds (VBMFX ETF)"
+    20: "20% stocks (VTSMX ETF) and 80% bonds (VBMFX ETF)",
+    30: "30% stocks , 60% Government bonds and 10% Gold Bonds"
 }
 
 export default connect(null, { performanceDataAction })(PortFolio);
