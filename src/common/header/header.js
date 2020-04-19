@@ -25,8 +25,8 @@ const ToggleMenu = () => {
                         <p className="nav_item">{dictionary['Support']}</p>
                     </div>
                 </header>
-                <Toolbar className="hide-md flx-display">
-                    <IconButton
+                <Toolbar disableGutters={true} className="hide-md flx-display">
+                    <IconButton size='small'
                         color="inherit"
                         aria-label="open drawer"
                         edge="end"
