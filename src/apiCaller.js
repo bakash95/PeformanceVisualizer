@@ -9,6 +9,7 @@ const callAPI = async (url, httpMethod = "GET",  requestBody = undefined,headers
         signal: controller.signal
     }
 
+    //time out for fetch call is 15s
     setTimeout(() => { controller.abort() }, 15000)
 
     let response;

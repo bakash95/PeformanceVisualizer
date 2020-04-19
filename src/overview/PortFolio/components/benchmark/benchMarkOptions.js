@@ -14,7 +14,7 @@ const PortFolio = (props) => {
             <section className="row col-12 p-0 ml-0">
                 <article className="col-12 col-sm-6 p-3" style={{ background: '#f5f5f5' }}>
                     <div className="cardText">
-                        <summary className="cardTextHeader">{dictionary["General_Investing"]}</summary>
+                        <div className="cardTextHeader">{dictionary["General_Investing"]}</div>
                         <p className="theme-txt"><b>{dictionary["stashaway_index_name"]}</b></p>
                     </div>
                 </article>

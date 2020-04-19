@@ -28,6 +28,7 @@ body {
 html {
   height: 100%;
   /*added for outline none in mobile devices*/
+  scroll-behavior: smooth;
   -webkit-tap-highlight-color: transparent;
 }
 
