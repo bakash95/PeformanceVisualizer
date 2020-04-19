@@ -10,11 +10,7 @@
     float: right;
 }
 
-h5{
-    padding: 0px;
-    margin:0px
-}
-
-.indexname-style{
+.indexname-style {
     font-size: 0.8em;
+    padding: 10px 0px;
 }

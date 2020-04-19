@@ -11,7 +11,9 @@ let dictionaryEn = {
     'assets':'Assets',
     'projection':'Projection',
     'about_portfolio':'About Portfolio',
-    'disclaimer_mobile':'Please Tilt your phone for the best possible experience'
+    'disclaimer_mobile':'Please Tilt your phone for the best possible experience',
+    'static1_text_chart':'PortFolio value based on gross returns',
+    'static2_text_chart':'Gross returns and exchanges rates sources from ',
 }
 
 let dictionaryChi = {

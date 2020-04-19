@@ -9,7 +9,7 @@ import { popupForPerformanceDetail } from './lineCharHelper'
 import apiCaller from 'apiCaller'
 import { connect } from 'react-redux'
 
-import {fetchPerformanceData} from 'overview/PortFolio/portFolioActions'
+import { fetchPerformanceData } from 'overview/PortFolio/portFolioActions'
 
 class RealTimeChart extends PureComponent {
     constructor(props) {
@@ -39,8 +39,8 @@ class RealTimeChart extends PureComponent {
         if (request.selectedIndexValue && request.selectedIndexValue !== -1) {
             this.setState({ loadSpinner: true });
             let callBackForResponseLoaded = (response) => {
-                let { baseLineData, stashAwayReturns, marker } = response
-                this.setState({ ...nextProps.performanceData, baseLineData, stashAwayReturns, marker, loadSpinner: false })
+                let { baseLineData, stashAwayReturns, marker, sourceOfData } = response
+                this.setState({ ...nextProps.performanceData, baseLineData, sourceOfData, stashAwayReturns, marker, loadSpinner: false })
             }
             let errorCallBack = () => {
                 this.setState({ loadSpinner: false });
@@ -61,11 +61,11 @@ class RealTimeChart extends PureComponent {
 
     render() {
         if (this.state.loadSpinner) {
-            return <div className="container-frame"><CircularProgress className="progress_align" /></div>
+            return <div className="progress-container"><CircularProgress className="progress_align" /></div>
         }
 
         let { dictionary } = window;
-        const { baseLineData, stashAwayReturns, marker, selectedIndexName } = this.state
+        const { baseLineData, stashAwayReturns, marker, selectedIndexName, sourceOfData } = this.state
 
         let { locale, currency } = this.state.currencyFormat[this.state.selectedCurrency]
         const formatter = new Intl.NumberFormat(locale, {
@@ -75,12 +75,17 @@ class RealTimeChart extends PureComponent {
 
         const chartProperties = getPropertiesForLineChart(baseLineData, dictionary, stashAwayReturns, formatter, marker, selectedIndexName)
 
+        let textforSource = sourceOfData ? (dictionary['static2_text_chart'] + sourceOfData) : "";
         return (
             baseLineData ?
-                <div className="container-chart" style={{ height: chartProperties.height, background: 'rgb(7, 35, 64)' }}>
+                <div className="container-chart">
+                    <div className="p-4 clr-white">
+                        <h5>{dictionary['static1_text_chart']}</h5>
+                        <i>{textforSource}</i>
+                    </div>
                     <ResponsiveLine
                         {...chartProperties}
-                        sliceTooltip={(props) => popupForPerformanceDetail(props, formatter)}
+                        sliceTooltip={(props) => popupForPerformanceDetail(props, formatter,currency)}
                         theme={themeForLineChart}
                     />
                 </div>
@@ -93,7 +98,7 @@ class RealTimeChart extends PureComponent {
 let getPropertiesForLineChart = (baseLineData, dictionary, stashAwayReturns, formatter, marker, selectedIndexName) => {
     const chartProperties = {
         height: 400,
-        margin: { top: 50, right: 20, bottom: 60, left: 80 },
+        margin: { top: 10, right: 20, bottom: 60, left: 80 },
         animate: true,
         enableSlices: 'x',
         xScale: {
