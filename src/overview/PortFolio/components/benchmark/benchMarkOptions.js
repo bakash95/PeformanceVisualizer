@@ -50,22 +50,14 @@ const SelectField = (props) => {
                     onChange={onChange}
                     value={selectedIndexValue}>
                     <MenuItem value="-1" disabled>{window.dictionary["benchmark_placeholder"]}</MenuItem>
-                    <StockIndexOptions />
+                    {
+                        Object.entries(stockComparsionIndex).map(([key, value]) => {
+                            return <MenuItem value={key}>{value}</MenuItem>;
+                        })
+                    }
                 </Select>
             </FormControl>
         </div>
-    )
-}
-
-const StockIndexOptions = () => {
-    return (
-        <>
-            {
-                Object.entries(stockComparsionIndex).map(([key, value]) => {
-                    return <MenuItem value={key}>{value}</MenuItem>;
-                })
-            }
-        </>
     )
 }
 
