@@ -20,6 +20,11 @@
     position: relative;
 }
 
+.wdth-max{
+    width: 90%;
+    max-width : 320px
+}
+
 @media screen and (max-width:780px) and (min-width:500px) {
     .vs_relative {
         left: 48%;

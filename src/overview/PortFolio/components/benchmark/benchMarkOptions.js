@@ -42,8 +42,8 @@ const SelectField = (props) => {
     }
     return (
         <div className="pd10">
-            <FormControl variant="outlined">
-                <Select style={{ maxWidth: '320px'}}
+            <FormControl className="wdth-max" variant="outlined">
+                <Select className="wdth-max"
                     autoWidth={false}
                     labelId="outlined-age-native-simple-label"
                     id="outlined-age-native-simple"
@@ -53,7 +53,6 @@ const SelectField = (props) => {
                     <MenuItem value="-1" disabled>{window.dictionary["benchmark_placeholder"]}</MenuItem>
                     <MenuItem value={10}>{stockComparsionIndex[10]}</MenuItem>
                     <MenuItem value={20}>{stockComparsionIndex[20]}</MenuItem>
-                    <MenuItem value={30}>{stockComparsionIndex[30]}</MenuItem>
                 </Select>
             </FormControl>
         </div>
