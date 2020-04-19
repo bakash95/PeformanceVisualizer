@@ -7,3 +7,5 @@ The BackEnd for this APP is in the repo https://github.com/bakash95/PerformanceV
 
 You can see the working of this app by visiting
 http://performancecompare.herokuapp.com/
+
+you can also run this project by checking out and running yarn dev and yarn mock
