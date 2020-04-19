@@ -1,10 +1,18 @@
 .slice-styling {
     background: white;
-    padding: 9px 12px;
-    width: 100%;
+    padding: 15px 15px;
+    width: 80%;
     border: 1px solid #ccc;
     text-align: end;
-    border-radius: 10px
+    border-radius: 10px;
+    word-wrap: break-word;
+    position: relative;
+    float: right;
+}
+
+h5{
+    padding: 0px;
+    margin:0px
 }
 
 .indexname-style{

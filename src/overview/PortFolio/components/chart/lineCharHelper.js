@@ -16,14 +16,14 @@ export const popupForPerformanceDetail = (props, formatter) => {
                     return false;
                 })
             }
-            <p>{date}</p>
+            <h5>{date}</h5>
             {slice.points.map(point => {
                 return (
                     <div
                         key={point.id}
                         style={{
                             color: point.serieColor,
-                            padding: '3px 0',
+                            padding: '1px 0',
                         }}>
                         <p className="indexname-style">{point.serieId}</p>
                         <div className="cardTextContent">{formatter.format(point.data.yFormatted)}</div>
