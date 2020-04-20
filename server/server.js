@@ -17,11 +17,22 @@ app.post('/getPerformanceData',
     (req, res) => {
         let menuPath = path.join(__dirname, '/performanceData.json');
         let menuPathFile = fs.readFileSync(menuPath);
-        res.setHeader('Content-Type','application/json');
-        setTimeout(()=>{
+        res.setHeader('Content-Type', 'application/json');
+        setTimeout(() => {
             res.write(menuPathFile)
             res.end()
-        },2000)
+        }, 2000)
+    })
+
+app.get('/getIndexOptions',
+    (req, res) => {
+        let menuPath = path.join(__dirname, '/indexOptions.json');
+        let menuPathFile = fs.readFileSync(menuPath);
+        res.setHeader('Content-Type', 'application/json');
+        setTimeout(() => {
+            res.write(menuPathFile)
+            res.end()
+        }, 2000)
     })
 
 
