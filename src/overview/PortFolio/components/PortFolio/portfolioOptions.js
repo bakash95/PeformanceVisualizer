@@ -46,7 +46,7 @@ const PeriodSelector = (props) => {
                 keysForPeriod.map((item) => {
                     let selected = item.keyValue === selectedPeriod ? "selected" : "";
                     return (
-                        <Button keyValue={item.keyValue} selected={selected} onClick={selectChange} className="btn-style">{item.keyName}</Button>
+                        <Button key={item.keyValue} keyValue={item.keyValue} selected={selected} onClick={selectChange} className="btn-style">{item.keyName}</Button>
                     )
                 })
             }
@@ -79,7 +79,7 @@ const CurrenySelector = (props) => {
             {currencyOptions.map((item) => {
                 let selected = item.keyValue === selectedCurrency ? "selected" : "";
                 return (
-                    <Button keyValue={item.keyValue} selected={selected} onClick={selectChange} className="btn-style">{item.keyName}</Button>
+                    <Button key={item.keyValue} keyValue={item.keyValue} selected={selected} onClick={selectChange} className="btn-style">{item.keyName}</Button>
                 )
             })
             }
