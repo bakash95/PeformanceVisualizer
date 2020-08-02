@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { AppBar, Toolbar, IconButton, Snackbar, SnackbarContent } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu'
 
-import Logo from 'assets/companylogo.png'
 import './css/header.css'
 
 
@@ -18,7 +17,7 @@ const ToggleMenu = () => {
                     color="transparent"
                 >
                     <header className="App-header show-sm">
-                        <img src={Logo} alt="logo" className="logo-styl" />
+                        <span className="logo-styl" />
                         <div className="pt-2 pr-4 nav_items">
                             <p className="nav_item">{dictionary['Home']}</p>
                             <p className="nav_item">{dictionary['Manage_Deposits']}</p>

@@ -24,6 +24,9 @@
 }
 
 .logo-styl {
+    background-image : url('../assets/company.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
     width: 10%;
     height: 80%;
     margin-left: -10px;
@@ -31,6 +34,7 @@
 
 .internal-nav-selected {
     border-bottom: 3px solid rgb(63, 182, 178);
+    border-bottom: 3px solid var(--color-theme);
 }
 
 @media screen and (min-width:450px) {
