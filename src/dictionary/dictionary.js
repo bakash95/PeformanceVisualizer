@@ -6,7 +6,7 @@ let dictionaryEn = {
     'General_Investing': 'General Investing',
     'overview':'Overview',
     'portfolio_benchmark':'Portfolio benchmark',
-    'stashaway_index_name':'Stash Away Risk Index 14%',
+    'stashaway_index_name':'Random stock Risk Index 14%',
     'benchmark_placeholder':'Which benchmark do you want to compare',
     'assets':'Assets',
     'projection':'Projection',
